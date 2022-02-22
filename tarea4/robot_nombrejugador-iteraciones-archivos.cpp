@@ -1,5 +1,8 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
+
 void drawMap(int posX,int posY,char gameMap[10][10]){
   for(int i=0;i<10;i++){
     for(int j=0;j<10;j++){
@@ -16,6 +19,41 @@ void drawMap(int posX,int posY,char gameMap[10][10]){
   }
 }
 int main(){
+
+    //creación de archivo para nombre del jugador
+  ofstream myfile("gameData.txt");
+  string Name;
+  cout<<"Ingrese su nombre:"<< endl;
+  cin>> Name;
+
+  if(myfile.is_open()){
+    myfile<< "Jugador:"<< endl;
+    myfile<<Name<<endl;
+    myfile.close();
+  }
+  else
+    cout<<"No es posible abrir archivo";
+
+    //lectura de nombre del jugador
+  string line;
+  string NombreJugador;
+  int lineCount=0;
+  ifstream myfileRead("gameData.txt");
+
+  if(myfileRead.is_open()){
+    while(getline(myfileRead,line)){
+        if(lineCount ==1){
+            NombreJugador = line;
+        }
+        lineCount++;
+    }
+    myfileRead.close();
+  }
+  else {
+    cout<<"Archivo no encontrado";
+  }
+  cout<<"Bienvenido al juego de limites"<<" "<< NombreJugador<< endl;
+
   int posX=5;
   int posY=5;
   char map[10][10]={{'1','1','1','1','1','1','1','1','1','1'},
@@ -64,6 +102,7 @@ int main(){
 
   drawMap(posX,posY,map);
   }
+
  return 0;
 }
 
