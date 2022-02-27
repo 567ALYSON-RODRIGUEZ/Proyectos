@@ -3,6 +3,7 @@
 #include <string>
 using namespace std;
 
+
 void drawMap(int posX,int posY,char gameMap[10][10]){
   for(int i=0;i<10;i++){
     for(int j=0;j<10;j++){
@@ -103,7 +104,16 @@ int main(){
   drawMap(posX,posY,map);
   }
 
- return 0;
-}
+   return 0;
+  }
+
+
+
+
+
+
+
+
+
 
 
